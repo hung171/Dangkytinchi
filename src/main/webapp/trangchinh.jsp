@@ -7,10 +7,10 @@
 <head>
     <%@include file="/header.jsp" %>
     <script async="" src="//za.zdn.vn/v3/za.js?19428"></script>
-    <script language="javascript" type="text/javascript">
+<%--    <script language="javascript" type="text/javascript">--%>
 
-        var gv = 'False';
-    </script>
+<%--        var gv = 'False';--%>
+<%--    </script>--%>
     <script type="text/javascript" src="https://apis.google.com/js/platform.js?hl=vn" async="" defer=""
             gapi_processed="true"></script>
     <meta name="google-signin-scope" content="profile email"  http-equiv="Content-Type" >
@@ -114,8 +114,8 @@
 <c:if test="${sessionScope.sinhvien eq null}">
     <c:redirect url="gdDangNhap.jsp?err=timeout"/>
 </c:if>
-<form name="aspnetForm" method="post" action="Default.aspx?page=gioithieu" id="aspnetForm"
-      enctype="multipart/form-data">
+<%--<form--%>
+
     <div>
         <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
         <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
@@ -299,9 +299,9 @@
                                         <div id="ctl00_Header1_Logout1_dLog" class="logout"
                                              style="text-align: right; margin-bottom: 0px">
 
-                                            <img src="App_Themes/Standard/Images/US.gif" alt="English"
+                                            <img src="css/Images/US.gif" alt="English"
                                                  onclick="changeLanguage_click('_us')" id="imgUS" title="English">
-                                            <img src="App_Themes/Standard/Images/VI.gif" alt="Vietnamese"
+                                            <img src="css/Images/VI.gif" alt="Vietnamese"
                                                  onclick="changeLanguage_click('_vi')" id="imgVi" title="Vietnamese">
                                             <span id="ctl00_Header1_Logout1_lblNguoiDung" class="Label"
                                                   style="color:MistyRose;font-size:12px;font-weight:bold;">Chào bạn Nguyễn Tấn Hùng (B18DCCN256)</span>&nbsp;<a
@@ -373,18 +373,21 @@
                                     </div>
 
 
+
+                                    <form style="margin-top: 30px" name="myform" action="chonNganhServlet" method="post">
                                     <div id="ctl00_menu_pnDangKyMonHoc" class="out-menu">
 
                                         <div class="left"></div>
                                         <div class="center" style="white-space: nowrap">
-                                            <a href="Default.aspx?page=dkmonhoc">
+                                            <a href="dangkymonhoc.jsp" onclick='document.forms[myform].submit(); return false;'>
                                                 <span id="ctl00_menu_lblDangKyMonHoc"
-                                                      class="Label">ĐĂNG KÝ MÔN HỌC</span></a>
+                                                      class="Label">ĐĂNG KÝ MÔN HỌC</span>
+                                            </a>
                                         </div>
                                         <div class="right"></div>
 
                                     </div>
-
+                                    </form>
 
                                     <div id="ctl00_menu_thoikhoabieu" class="out-menu">
 
@@ -1360,7 +1363,7 @@ viễn thông</span></span>... (<span class="NgayTitle">04/10/2022</span>)</a></
         Sys.Application.initialize();
         //]]>
     </script>
-</form>
+<%--</form>--%>
 <div id="app" class="zs"></div>
 
 

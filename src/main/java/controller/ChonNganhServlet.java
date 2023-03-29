@@ -33,6 +33,6 @@ public class ChonNganhServlet extends HttpServlet {
 
         request.setAttribute("listSinhVienKhoa",listSinhVienKhoa);
 
-        request.getRequestDispatcher("gdChonNganhHoc.jsp").forward(request,response);
+        request.getRequestDispatcher("dangkymonhoc.jsp").forward(request,response);
     }
 }

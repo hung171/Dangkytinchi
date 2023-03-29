@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
-var gv = 'False';
+
 </script>
 <script type="text/javascript" src="https://apis.google.com/js/platform.js?hl=vn" async="" defer=""
         gapi_processed="true"></script>
@@ -205,9 +205,9 @@ var gv = 'False';
                                         <div id="ctl00_Header1_Logout1_dLog" class="logout"
                                              style="text-align: right; margin-bottom: 0">
 
-                                            <img src="App_Themes/Standard/Images/US.gif" alt="English"
+                                            <img src="css/Images/US.gif" alt="English"
                                                  onclick="changeLanguage_click('_us')" id="imgUS" title="English">
-                                            <img src="App_Themes/Standard/Images/VI.gif" alt="Vietnamese"
+                                            <img src="css/Images/VI.gif" alt="Vietnamese"
                                                  onclick="changeLanguage_click('_vi')" id="imgVi" title="Vietnamese">
                                             <span id="ctl00_Header1_Logout1_lblNguoiDung" class="Label"
                                                   style="color:MistyRose;font-size:12px;font-weight:bold;">Chào bạn </span>&nbsp;
@@ -248,10 +248,6 @@ var gv = 'False';
                             <%--                                src: url('js/myriadpro-bold.otf');--%>
                             <%--                            }--%>
 
-                            .menufontdhxd {
-                            font-family: 'myriadpro';
-                            font-size: 14px;
-                            }
                         </div>
 
                         <div class="left-menu">

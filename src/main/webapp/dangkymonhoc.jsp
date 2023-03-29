@@ -1,21 +1,32 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head><script language="javascript" type="text/javascript">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="model.ThanhVien" %><%--
+  Created by IntelliJ IDEA.
+  User: LENOVO
+  Date: 9/21/2021
+  Time: 5:29 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-    var gv = 'False';
-</script>
+<html >
+<head>
 <script type="text/javascript" src="https://apis.google.com/js/platform.js?hl=vn" async="" defer="" gapi_processed="true"></script>
 <meta name="google-signin-scope" content="profile email"><meta id="ctl00_metaGoogle" name="google-signin-client_id"><link id="ctl00_favicon" rel="shortcut icon" type="image/x-icon" href="Images/Edusoft.gif">
-<script src="JS/jquery-2.2.1.js" type="text/javascript"></script>
-<script src="JS/dialog.js" type="text/javascript"></script>
-<script src="JS/checkdate.js" type="text/javascript"></script>
-<script src="JS/balloontip.js" type="text/javascript"></script>
-<link href="JS/balloontip.css" rel="stylesheet" type="text/css"><title>
+<script src="js/jquery-2.2.1.js" type="text/javascript"></script>
+<script src="js/dialog.js" type="text/javascript"></script>
+<script src="js/checkdate.js" type="text/javascript"></script>
+<script src="js/balloontip.js" type="text/javascript"></script>
+<link href="js/balloontip.css" rel="stylesheet" type="text/css"><title>
 	Cổng Thông Tin Đào Tạo-Học Viện Công Nghệ Bưu Chính Viễn Thông-Cơ Sở Miền Bắc-BCVTVTHN
 </title>
 
-<link href="App_Themes/Standard/Standard.css" type="text/css" rel="stylesheet"><link href="App_Themes/Standard/StyleSheet.css" type="text/css" rel="stylesheet"></head>
+<link href="css/Standard.css" type="text/css" rel="stylesheet"><link href="css/StyleSheet.css" type="text/css" rel="stylesheet"></head>
 
-<body background="App_Themes/Standard/Images/background.png" onload="ShowMess()">
-    <form name="aspnetForm" method="post" action="Default.aspx?page=dkmonhoc" id="aspnetForm" enctype="multipart/form-data">
+<body background="css/Images/background.png" onload="ShowMess()">
+<c:if test = "${sessionScope.sinhvien eq null}">
+    <c:redirect url="trangchinh.jsp?err=timeout"/>
+</c:if>
+<form name="aspnetForm" method="post" action="dangKyHocServlet" id="aspnetForm" enctype="multipart/form-data">
         <div>
             <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
             <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
@@ -35,7 +46,7 @@
                     <td>
 
 
-                        <div style="background-image: url(Images/bg_heading_thongbao.png)">
+                        <div style="background-image: url(css/Images/bg_heading_thongbao.png)">
                             <table width="1000px">
                                 <tbody><tr>
                                     <td height="20px" style="padding-left: 50px" valign="bottom" align="right">
@@ -43,8 +54,8 @@
 
                                         <div id="ctl00_Header1_Logout1_dLog" class="logout" style="text-align: right; margin-bottom: 0px">
 
-                                            <img src="App_Themes/Standard/Images/US.gif" alt="English" onclick="changeLanguage_click('_us')" id="imgUS" title="English">
-                                            <img src="App_Themes/Standard/Images/VI.gif" alt="Vietnamese" onclick="changeLanguage_click('_vi')" id="imgVi" title="Vietnamese">
+                                            <img src="css/Images/US.gif" alt="English" onclick="changeLanguage_click('_us')" id="imgUS" title="English">
+                                            <img src="css/Images/VI.gif" alt="Vietnamese" onclick="changeLanguage_click('_vi')" id="imgVi" title="Vietnamese">
                                             <span id="ctl00_Header1_Logout1_lblNguoiDung" class="Label" style="color:MistyRose;font-size:12px;font-weight:bold;">Chào bạn Nguyễn Tấn Hùng (B18DCCN256)</span>&nbsp;<a id="ctl00_Header1_Logout1_lbtnThongBao" href="javascript:__doPostBack('ctl00$Header1$Logout1$lbtnThongBao','')" style="color:MistyRose;font-size:12px;font-style:italic;font-family: 'Tahoma', Times, serif">Xem thông báo</a><span id="ctl00_Header1_Logout1_lblXiet1" class="Label" style="color:MistyRose;"> | </span>
                                             <a id="ctl00_Header1_Logout1_lbtnChangePass" href="javascript:__doPostBack('ctl00$Header1$Logout1$lbtnChangePass','')" style="color:MistyRose;font-size:12px;font-weight:bold;font-family: 'Tahoma', Times, serif">Thay đổi mật khẩu</a>
                                             <span id="ctl00_Header1_Logout1_lblXiet2" class="Label" style="color:MistyRose;"> | </span>
@@ -68,13 +79,13 @@
 
                         <style type="text/css">
                             .styleApplication {
-                                font-size: 26;
+                                /*font-size: 26;*/
                                 font-weight: bold;
                             }
 
                             @font-face {
                                 font-family: 'myriadpro';
-                                src: url('js/myriadpro-bold.otf');
+                                /*src: url('js/myriadpro-bold.otf');*/
                             }
 
                             .menufontdhxd {
@@ -104,6 +115,7 @@
 
                                             <div class="left"></div>
                                             <div class="center" style="white-space: nowrap">
+
                                                 <a href="Default.aspx?page=dkmonhoc">
                                                     <span id="ctl00_menu_lblDangKyMonHoc" class="Label">ĐĂNG KÝ MÔN HỌC</span></a>
                                                 </div>
@@ -291,7 +303,7 @@
                                                                         </style>
 
                                                                 
-                                                                    <div id="dhtmltooltip" style="background-image: url(App_Themes/Standard/Images/tooltip.png); text-align: center"></div>
+                                                                    <div id="dhtmltooltip" style="background-image: url(css/Images/tooltip.png); text-align: center"></div>
 
                                                                     <div id="ctl00_ContentPlaceHolder1_ctl00_UpdatePanel2">
 
@@ -387,90 +399,90 @@
                                                                             </div>
                                                                             <div id="divTemp" class="grid-roll" style="height: 240px">
 
-                                                                                <div id="divKQ"><table class="body-table" style="border-collapse: collapse; color:Navy;" rules="all" border="1" cellspacing="0" cellpadding="0">
+<%--                                                                                <div id="divKQ"><table class="body-table" style="border-collapse: collapse; color:Navy;" rules="all" border="1" cellspacing="0" cellpadding="0">--%>
 
-                                                                                    <tbody><tr>
-                                                                                        <td style="width: 30px;" valign="middle" align="center">1</td>
-                                                                                        <td style="display:none" valign="middle" align="center">    </td>
-                                                                                        <td style="width: 60px;" valign="middle" align="center"></td>
-                                                                                        <td style="width: 180px;" valign="middle" align="left">&nbsp;</td>
-                                                                                        <td style="width: 35px;" valign="middle" align="center">17</td>
-                                                                                        <td style="width: 45px;" valign="middle" align="center"></td>
-                                                                                        <td style="width: 35px;" valign="middle" align="center">4</td>
-                                                                                        <td style="width: 35px;" valign="middle" align="center">0</td>
-                                                                                        <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>
-                                                                                        <td style="width: 80px;" valign="middle" align="right">&nbsp;</td>
-                                                                                        <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>
-                                                                                        <td valign="middle" align="left">&nbsp; Bắt buộc phải học</td>
-                                                                                        <td valign="middle" align="left" style="width: 50px;"><input style="visibility:hidden" type="checkbox" id="chk_BAS115917    " name="chk_xoa" value="BAS115917    " onclick="CheckToDelete_CheckedChanged(this)" disabled="disabled"></td></tr>
-                                                                                        <tr>
-                                                                                            <td style="width: 30px;" valign="middle" align="center">2</td>
-                                                                                            <td style="display:none" valign="middle" align="center">INT144901  01</td>
-                                                                                            <td style="width: 60px;" valign="middle" align="center">INT1449</td>
-                                                                                            <td style="width: 180px;" valign="middle" align="left">&nbsp;Phát triển ứng dụng cho các thiết bị di động</td>
-                                                                                            <td style="width: 35px;" valign="middle" align="center">01</td>
-                                                                                            <td style="width: 45px;" valign="middle" align="center">01</td>
-                                                                                            <td style="width: 35px;" valign="middle" align="center">3</td>
-                                                                                            <td style="width: 35px;" valign="middle" align="center">0</td>
-                                                                                            <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>
-                                                                                            <td style="width: 80px;" valign="middle" align="right">&nbsp;</td>
-                                                                                            <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>
-                                                                                            <td valign="middle" align="left">&nbsp; Bắt buộc phải học</td>
-                                                                                            <td valign="middle" align="left" style="width: 50px;"><input style="visibility:hidden" type="checkbox" id="chk_INT144901  01" name="chk_xoa" value="INT144901  01" onclick="CheckToDelete_CheckedChanged(this)" disabled="disabled"></td></tr>
-                                                                                            <tr>
-                                                                                                <td style="width: 30px;" valign="middle" align="center">3</td>
-                                                                                                <td style="display:none" valign="middle" align="center">INT1314503    </td>
-                                                                                                <td style="width: 60px;" valign="middle" align="center">INT13145</td>
-                                                                                                <td style="width: 180px;" valign="middle" align="left">&nbsp;Kiến trúc máy tính</td>
-                                                                                                <td style="width: 35px;" valign="middle" align="center">03</td>
-                                                                                                <td style="width: 45px;" valign="middle" align="center"></td>
-                                                                                                <td style="width: 35px;" valign="middle" align="center">3</td>
-                                                                                                <td style="width: 35px;" valign="middle" align="center">0</td>
-                                                                                                <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>
-                                                                                                <td style="width: 80px;" valign="middle" align="right">&nbsp;</td>
-                                                                                                <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>
-                                                                                                <td valign="middle" align="left">&nbsp; Bắt buộc phải học</td>
-                                                                                                <td valign="middle" align="left" style="width: 50px;"><input style="visibility:hidden" type="checkbox" id="chk_INT1314503    " name="chk_xoa" value="INT1314503    " onclick="CheckToDelete_CheckedChanged(this)" disabled="disabled"></td></tr>
-                                                                                                <tr>
-                                                                                                    <td style="width: 30px;" valign="middle" align="center">4</td>
-                                                                                                    <td style="display:none" valign="middle" align="center">INT134113    </td>
-                                                                                                    <td style="width: 60px;" valign="middle" align="center">INT1341</td>
-                                                                                                    <td style="width: 180px;" valign="middle" align="left">&nbsp;Nhập môn trí tuệ nhân tạo</td>
-                                                                                                    <td style="width: 35px;" valign="middle" align="center">13</td>
-                                                                                                    <td style="width: 45px;" valign="middle" align="center"></td>
-                                                                                                    <td style="width: 35px;" valign="middle" align="center">3</td>
-                                                                                                    <td style="width: 35px;" valign="middle" align="center">0</td>
-                                                                                                    <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>
-                                                                                                    <td style="width: 80px;" valign="middle" align="right">&nbsp;</td>
-                                                                                                    <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>
-                                                                                                    <td valign="middle" align="left">&nbsp; Bắt buộc phải học</td>
-                                                                                                    <td valign="middle" align="left" style="width: 50px;"><input style="visibility:hidden" type="checkbox" id="chk_INT134113    " name="chk_xoa" value="INT134113    " onclick="CheckToDelete_CheckedChanged(this)" disabled="disabled"></td></tr>
-                                                                                                    <tr>
-                                                                                                        <td style="width: 30px;" valign="middle" align="center">5</td>
-                                                                                                        <td style="display:none" valign="middle" align="center">INT141605    </td>
-                                                                                                        <td style="width: 60px;" valign="middle" align="center">INT1416</td>
-                                                                                                        <td style="width: 180px;" valign="middle" align="left">&nbsp;Đảm bảo chất lượng phần mềm</td>
-                                                                                                        <td style="width: 35px;" valign="middle" align="center">05</td>
-                                                                                                        <td style="width: 45px;" valign="middle" align="center"></td>
-                                                                                                        <td style="width: 35px;" valign="middle" align="center">3</td>
-                                                                                                        <td style="width: 35px;" valign="middle" align="center">0</td>
-                                                                                                        <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>
-                                                                                                        <td style="width: 80px;" valign="middle" align="right">&nbsp;</td>
-                                                                                                        <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>
-                                                                                                        <td valign="middle" align="left">&nbsp; Bắt buộc phải học</td>
-                                                                                                        <td valign="middle" align="left" style="width: 50px;"><input style="visibility:hidden" type="checkbox" id="chk_INT141605    " name="chk_xoa" value="INT141605    " onclick="CheckToDelete_CheckedChanged(this)" disabled="disabled"></td></tr>
-                                                                                                        <tr style="font-weight: bold;" height="20px">
-                                                                                                            <td valign="middle" align="center" colspan="5">Tổng cộng</td>
-                                                                                                            <td valign="middle" align="center">16</td>
-                                                                                                            <td valign="middle" align="center">00</td>
-                                                                                                            <td valign="middle" align="right">00&nbsp;</td>
-                                                                                                            <td valign="middle" align="right">00&nbsp;</td>
-                                                                                                            <td valign="middle" align="right">00&nbsp;</td>
-                                                                                                            <td valign="middle" align="left"></td>
-                                                                                                            <td valign="middle" align="center">
-                                                                                                            </td>
+<%--                                                                                    <tbody><tr>--%>
+<%--                                                                                        <td style="width: 30px;" valign="middle" align="center">1</td>--%>
+<%--                                                                                        <td style="display:none" valign="middle" align="center">    </td>--%>
+<%--                                                                                        <td style="width: 60px;" valign="middle" align="center"></td>--%>
+<%--                                                                                        <td style="width: 180px;" valign="middle" align="left">&nbsp;</td>--%>
+<%--                                                                                        <td style="width: 35px;" valign="middle" align="center">17</td>--%>
+<%--                                                                                        <td style="width: 45px;" valign="middle" align="center"></td>--%>
+<%--                                                                                        <td style="width: 35px;" valign="middle" align="center">4</td>--%>
+<%--                                                                                        <td style="width: 35px;" valign="middle" align="center">0</td>--%>
+<%--                                                                                        <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>--%>
+<%--                                                                                        <td style="width: 80px;" valign="middle" align="right">&nbsp;</td>--%>
+<%--                                                                                        <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>--%>
+<%--                                                                                        <td valign="middle" align="left">&nbsp; Bắt buộc phải học</td>--%>
+<%--                                                                                        <td valign="middle" align="left" style="width: 50px;"><input style="visibility:hidden" type="checkbox" id="chk_BAS115917    " name="chk_xoa" value="BAS115917    " onclick="CheckToDelete_CheckedChanged(this)" disabled="disabled"></td></tr>--%>
+<%--                                                                                        <tr>--%>
+<%--                                                                                            <td style="width: 30px;" valign="middle" align="center">2</td>--%>
+<%--                                                                                            <td style="display:none" valign="middle" align="center">INT144901  01</td>--%>
+<%--                                                                                            <td style="width: 60px;" valign="middle" align="center">INT1449</td>--%>
+<%--                                                                                            <td style="width: 180px;" valign="middle" align="left">&nbsp;Phát triển ứng dụng cho các thiết bị di động</td>--%>
+<%--                                                                                            <td style="width: 35px;" valign="middle" align="center">01</td>--%>
+<%--                                                                                            <td style="width: 45px;" valign="middle" align="center">01</td>--%>
+<%--                                                                                            <td style="width: 35px;" valign="middle" align="center">3</td>--%>
+<%--                                                                                            <td style="width: 35px;" valign="middle" align="center">0</td>--%>
+<%--                                                                                            <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>--%>
+<%--                                                                                            <td style="width: 80px;" valign="middle" align="right">&nbsp;</td>--%>
+<%--                                                                                            <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>--%>
+<%--                                                                                            <td valign="middle" align="left">&nbsp; Bắt buộc phải học</td>--%>
+<%--                                                                                            <td valign="middle" align="left" style="width: 50px;"><input style="visibility:hidden" type="checkbox" id="chk_INT144901  01" name="chk_xoa" value="INT144901  01" onclick="CheckToDelete_CheckedChanged(this)" disabled="disabled"></td></tr>--%>
+<%--                                                                                            <tr>--%>
+<%--                                                                                                <td style="width: 30px;" valign="middle" align="center">3</td>--%>
+<%--                                                                                                <td style="display:none" valign="middle" align="center">INT1314503    </td>--%>
+<%--                                                                                                <td style="width: 60px;" valign="middle" align="center">INT13145</td>--%>
+<%--                                                                                                <td style="width: 180px;" valign="middle" align="left">&nbsp;Kiến trúc máy tính</td>--%>
+<%--                                                                                                <td style="width: 35px;" valign="middle" align="center">03</td>--%>
+<%--                                                                                                <td style="width: 45px;" valign="middle" align="center"></td>--%>
+<%--                                                                                                <td style="width: 35px;" valign="middle" align="center">3</td>--%>
+<%--                                                                                                <td style="width: 35px;" valign="middle" align="center">0</td>--%>
+<%--                                                                                                <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>--%>
+<%--                                                                                                <td style="width: 80px;" valign="middle" align="right">&nbsp;</td>--%>
+<%--                                                                                                <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>--%>
+<%--                                                                                                <td valign="middle" align="left">&nbsp; Bắt buộc phải học</td>--%>
+<%--                                                                                                <td valign="middle" align="left" style="width: 50px;"><input style="visibility:hidden" type="checkbox" id="chk_INT1314503    " name="chk_xoa" value="INT1314503    " onclick="CheckToDelete_CheckedChanged(this)" disabled="disabled"></td></tr>--%>
+<%--                                                                                                <tr>--%>
+<%--                                                                                                    <td style="width: 30px;" valign="middle" align="center">4</td>--%>
+<%--                                                                                                    <td style="display:none" valign="middle" align="center">INT134113    </td>--%>
+<%--                                                                                                    <td style="width: 60px;" valign="middle" align="center">INT1341</td>--%>
+<%--                                                                                                    <td style="width: 180px;" valign="middle" align="left">&nbsp;Nhập môn trí tuệ nhân tạo</td>--%>
+<%--                                                                                                    <td style="width: 35px;" valign="middle" align="center">13</td>--%>
+<%--                                                                                                    <td style="width: 45px;" valign="middle" align="center"></td>--%>
+<%--                                                                                                    <td style="width: 35px;" valign="middle" align="center">3</td>--%>
+<%--                                                                                                    <td style="width: 35px;" valign="middle" align="center">0</td>--%>
+<%--                                                                                                    <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>--%>
+<%--                                                                                                    <td style="width: 80px;" valign="middle" align="right">&nbsp;</td>--%>
+<%--                                                                                                    <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>--%>
+<%--                                                                                                    <td valign="middle" align="left">&nbsp; Bắt buộc phải học</td>--%>
+<%--                                                                                                    <td valign="middle" align="left" style="width: 50px;"><input style="visibility:hidden" type="checkbox" id="chk_INT134113    " name="chk_xoa" value="INT134113    " onclick="CheckToDelete_CheckedChanged(this)" disabled="disabled"></td></tr>--%>
+<%--                                                                                                    <tr>--%>
+<%--                                                                                                        <td style="width: 30px;" valign="middle" align="center">5</td>--%>
+<%--                                                                                                        <td style="display:none" valign="middle" align="center">INT141605    </td>--%>
+<%--                                                                                                        <td style="width: 60px;" valign="middle" align="center">INT1416</td>--%>
+<%--                                                                                                        <td style="width: 180px;" valign="middle" align="left">&nbsp;Đảm bảo chất lượng phần mềm</td>--%>
+<%--                                                                                                        <td style="width: 35px;" valign="middle" align="center">05</td>--%>
+<%--                                                                                                        <td style="width: 45px;" valign="middle" align="center"></td>--%>
+<%--                                                                                                        <td style="width: 35px;" valign="middle" align="center">3</td>--%>
+<%--                                                                                                        <td style="width: 35px;" valign="middle" align="center">0</td>--%>
+<%--                                                                                                        <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>--%>
+<%--                                                                                                        <td style="width: 80px;" valign="middle" align="right">&nbsp;</td>--%>
+<%--                                                                                                        <td style="width: 80px;" valign="middle" align="right">00&nbsp;</td>--%>
+<%--                                                                                                        <td valign="middle" align="left">&nbsp; Bắt buộc phải học</td>--%>
+<%--                                                                                                        <td valign="middle" align="left" style="width: 50px;"><input style="visibility:hidden" type="checkbox" id="chk_INT141605    " name="chk_xoa" value="INT141605    " onclick="CheckToDelete_CheckedChanged(this)" disabled="disabled"></td></tr>--%>
+<%--                                                                                                        <tr style="font-weight: bold;" height="20px">--%>
+<%--                                                                                                            <td valign="middle" align="center" colspan="5">Tổng cộng</td>--%>
+<%--                                                                                                            <td valign="middle" align="center">16</td>--%>
+<%--                                                                                                            <td valign="middle" align="center">00</td>--%>
+<%--                                                                                                            <td valign="middle" align="right">00&nbsp;</td>--%>
+<%--                                                                                                            <td valign="middle" align="right">00&nbsp;</td>--%>
+<%--                                                                                                            <td valign="middle" align="right">00&nbsp;</td>--%>
+<%--                                                                                                            <td valign="middle" align="left"></td>--%>
+<%--                                                                                                            <td valign="middle" align="center">--%>
+<%--                                                                                                            </td>--%>
 
-                                                                                                        </tr></tbody></table></div>
+<%--                                                                                                        </tr></tbody></table></div>--%>
                                                                                                     </div>
                                                                                                     <br>
 
