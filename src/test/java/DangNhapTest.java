@@ -32,9 +32,7 @@ public class DangNhapTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         verify(request, atLeast(1)).getParameter("username"); // only if you want to verify username was called...
-
         writer.flush(); // it may not have been flushed yet...
         String result = stringWriter.getBuffer().toString().trim();
         assertEquals("Login successful...", result);
