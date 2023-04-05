@@ -393,7 +393,7 @@
 
                                         <div class="left"></div>
                                         <div class="center" style="white-space: nowrap">
-                                            <a href="Default.aspx?page=thoikhoabieu">
+                                            <a href="/lichHocServlet?idlhp=1&&tenlhp=D18-001">
                                                 <span id="ctl00_menu_lblThoiKhoaBieu" class="Label">XEM TKB</span></a>
                                         </div>
                                         <div class="right"></div>

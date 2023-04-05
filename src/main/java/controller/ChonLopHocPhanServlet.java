@@ -22,5 +22,4 @@ public class ChonLopHocPhanServlet extends HttpServlet {
         request.getSession().setAttribute("listLopHocPhan",listLopHocPhan);
         request.getRequestDispatcher("/gdChonLopHocPhan.jsp").forward(request,response);
     }
-
 }
